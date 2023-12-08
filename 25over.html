@@ -50,26 +50,27 @@
 
 
 <script>
-    new Vue({
+    const app = new Vue({
         el: '#app',
         data: {
-            tickets: [], // Your tickets array will be populated here
-            filteredTickets: [] // The array to store filtered tickets
+            tickets: [],
+            filteredTickets: []
         },
         methods: {
             filterTickets() {
-                // Filter tickets where actual speed is 25 or more over the posted speed
                 this.filteredTickets = this.tickets.filter(ticket => ticket.actual_speed - ticket.posted_speed >= 25);
             }
         },
         mounted() {
-            // Fetch your JSON data and populate the 'tickets' array
             fetch('tickets1.json')
                 .then(response => response.json())
-                .then(data => this.tickets = data);
+                .then(data => {
+                    this.tickets = data;
+                    this.filterTickets(); // Optionally, you can filter initially
+                })
+                .catch(error => console.error('Error fetching data:', error));
         }
     });
-</script>
 >
 </body>
 </html>
