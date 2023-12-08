@@ -50,39 +50,26 @@
 
 
 <script>
-const app = Vue.createApp({
-    data() {
-        return {
-            tickets: [],
-            over25Tickets: []
-        };
-    },
-    async created() {
-        try {
-            const response = await fetch('tickets1.json');
-            this.tickets = await response.json();
-            this.over25Tickets = this.tickets.filter(ticket => ticket.speed >= ticket.limit + 25);
-        } catch (error) {
-            console.error("Error loading tickets data:", error);
-        }
-    }
-});
+        const app = Vue.createApp({
+            data() {
+                return {
+                    tickets: [],
+                    over25Tickets: []
+                };
+            },
+            async created() {
+                try {
+                    const response = await fetch('tickets1.json');
+                    this.tickets = await response.json();
+                    this.over25Tickets = this.tickets.filter(ticket => ticket.speed >= ticket.limit + 25);
+                } catch (error) {
+                    console.error("Error loading tickets data:", error);
+                }
+            }
+        });
 
-app.component('ticket-row', {
-    props: ['ticket'],
-    template: `
-        <tr>
-            <td>{{ ticket.tid }}</td>
-            <td>{{ ticket.stop_time }}</td>
-            <td>{{ ticket.posted_speed }}</td>
-            <td>{{ ticket.actual_speed - ticket.posted_speed }}</td>
-            <td>{{ ticket.Violator_sex }}</td>
-        </tr>
-    `
-});
-
-app.mount('#app');
-</script>
+        app.mount('#ticketApp');
+    </script>
 </body>
 </html>
 
