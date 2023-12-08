@@ -30,18 +30,18 @@
           
           <table class="table table-bordered table-striped">
               <tr>
-                <th>Ticket ID</th>
-                <th>Time</th>
-                <th>Posted Speed</th>
-                <th>MPH Over</th>
-                <th>Violator Sex</th>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
               </tr>
               <tr v-for = "ticket in tickets">
-                <td>{{ticket.tid}}</td>
-                <td>{{ticket.stop_time}}</td>
-                <td>{{ticket.posted_speed}}</td>
-                <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
-                <td>{{ticket.violator_sex}}</td>
+                  <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                  <td>{{ticket.violator_sex}}</td>
               </tr>
          </table>
 </div>
@@ -57,15 +57,18 @@
                     over25Tickets: []
                 };
             },
-            async created() {
-                try {
-                    const response = await fetch('tickets1.json');
-                    this.tickets = await response.json();
-                    this.over25Tickets = this.tickets.filter(ticket => ticket.speed >= ticket.limit + 25);
-                } catch (error) {
-                    console.error("Error loading tickets data:", error);
-                }
-            }
+           async created() {
+    try {
+        const response = await fetch('tickets1.json');
+        this.tickets = await response.json();
+
+        // Filter tickets where speed is 25 mph or more over the limit
+        this.over25Tickets = this.tickets.filter(ticket => ticket.actual_speed >= ticket.posted_speed + 25);
+
+    } catch (error) {
+        console.error("Error loading tickets data:", error);
+    }
+}
         });
 
         app.mount('#ticketApp');
