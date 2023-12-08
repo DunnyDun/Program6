@@ -49,34 +49,27 @@
 
 
 <script>
-    let app = Vue.createApp({
-        data() {
-            return {
-                meal: '',
-                results: [],
-                menu_items: [],
-                time_loaded: '',
-                showTable: false
-            };
-        },
-        created() {
-            var d = new Date()
-            this.time_loaded = d.toLocaleTimeString()
-            this.getData();
-        },
-        methods: {
-            async getData() {
-                const response = await fetch('menu_items.json');
-                this.results = await response.json();
-            },
-            getMenu() {
-                this.showTable = true;
-                this.menu_items = this.results.filter(item => item.meal === this.meal);
-            }
-        }
-    });
+import axios from 'axios';
 
-    app.mount('#main');
+export default {
+ data() {
+    return {
+      tickets: [],
+      over25Tickets: [],
+    };
+ },
+ async created() {
+    try {
+      const response = await axios.get('tickets1.json');
+      this.tickets = response.data;
+      this.over25Tickets = this.tickets.filter(ticket => ticket.price > 25);
+      console.log('tickets:', this.tickets);
+      console.log('over25Tickets:', this.over25Tickets);
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
+ },
+};
 </script>
 </body>
 </html>
