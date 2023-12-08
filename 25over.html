@@ -54,7 +54,7 @@
         data() {
             return {
                 tickets: [],
-                over25Tickets: []
+                MPHOver: []
             };
         },
         async created() {
@@ -63,7 +63,7 @@
                 this.tickets = await response.json();
 
                 // Filter tickets where speed is 25 mph or more over the limit
-                this.over25Tickets = this.tickets.filter(ticket => ticket.actual_speed >= ticket.posted_speed + 25);
+                this.MPHOver = this.ticket.filter(ticket => ticket.actual_speed - ticket.posted_speed + 25);
             } catch (error) {
                 console.error("Error loading tickets data:", error);
             }
