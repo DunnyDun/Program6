@@ -50,33 +50,30 @@
 
 <script>
     let app = Vue.createApp({
-        data() {     // returns an object of data
+        data() {
             return {
-                tickets: [],        //array to hold all car data returned
-			    mphover: [],           // array to hold filtered data
-				
+                tickets: [],
+                mphover: [],
                 showTable: false
             }
         },
-	    created() {      // section executes as page loads
-		    this.getData()  // load json data as page loads
-	    },
-        methods: {    // an object of functions (methods)
-            async getData() {
-                const response = await fetch('tickets1.json')
-                this.results = await response.json()
-            },
-		    getBytickets() {
-				//console.log(this.dealer)
-			    this.showTable = true
-			    // filter data from selected dealer
-			    this.mphover = this.tickets.filter( (ticket) => ticket.tickets == this.tickets );
-		    }
+        created() {
+            this.getData();
         },
-    
-    })
+        methods: {
+            async getData() {
+                const response = await fetch('tickets1.json');
+                this.tickets = await response.json(); // Use the correct variable name 'tickets'
+            },
+            getBytickets() {
+                this.showTable = true;
+                // Filter data for tickets 25mph or more over the speed limit
+                this.mphover = this.tickets.filter((ticket) => ticket.actual_speed - ticket.posted_speed >= 25);
+            }
+        },
+    });
 
-    app.mount('#carsApp')   //in which div to mount the vue app
-
+    app.mount('#ticketApp'); // Use the correct ID 'ticketApp'
 </script>
+
 </body></html>
