@@ -49,27 +49,27 @@
 
 
 <script>
-import axios from 'axios';
+       let app = Vue.createApp({
+            data() {     // returns an object of data
+                return {
+                    tickets: [],           // array to hold student data
+                }
+            },
+            created() {      // section executes as page loads
+                this.getData()  // load json data as page loads
+            },
+            methods: {    // ajax request
+                async getData() {
+                    const response = await fetch('tickets1.json')
+                    this.tickets = await response.json()
+                    //tickets = data.filter( (item) => item.major == majSelect );     
+                },
+            }
+          })
+      
+      app.mount('#ticketApp')   //in which div to mount the vue app
+		  
 
-export default {
- data() {
-    return {
-      tickets: [],
-      over25Tickets: [],
-    };
- },
- async created() {
-    try {
-      const response = await axios.get('tickets1.json');
-      this.tickets = response.data;
-      this.over25Tickets = this.tickets.filter(ticket => ticket.price > 25);
-      console.log('tickets:', this.tickets);
-      console.log('over25Tickets:', this.over25Tickets);
-    } catch (error) {
-      console.error('Error loading data:', error);
-    }
- },
-};
 </script>
 </body>
 </html>
