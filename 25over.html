@@ -48,30 +48,35 @@
 </div>
 
 
-
 <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    tickets: [],
-                    over25Tickets: []
-                };
+    let app = Vue.createApp({
+        data() {
+            return {
+                meal: '',
+                results: [],
+                menu_items: [],
+                time_loaded: '',
+                showTable: false
+            };
+        },
+        created() {
+            var d = new Date()
+            this.time_loaded = d.toLocaleTimeString()
+            this.getData();
+        },
+        methods: {
+            async getData() {
+                const response = await fetch('menu_items.json');
+                this.results = await response.json();
             },
-           async created() {
-    try {
-        const response = await fetch('tickets1.json');
-        this.tickets = await response.json();
+            getMenu() {
+                this.showTable = true;
+                this.menu_items = this.results.filter(item => item.meal === this.meal);
+            }
+        }
+    });
 
-        // Filter tickets where speed is 25 mph or more over the limit
-        this.over25Tickets = this.tickets.filter(ticket => ticket.actual_speed >= ticket.posted_speed + 25);
-
-    } catch (error) {
-        console.error("Error loading tickets data:", error);
-    }
-}
-        });
-
-        app.mount('#ticketApp');
-    </script>
+    app.mount('#main');
+</script>
 </body>
 </html>
