@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<html><head><title>speeding tickets</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
  <script src="https://unpkg.com/vue@next"></script> 
+
 </head>
 <body>
 
@@ -26,28 +26,27 @@
 
 <div id="ticketApp">
 
-     <h2>Tickets July 4, 2014, Minneapolis/St. Paul, 25 MPH or more over the limit</h2>
+     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
           
           <table class="table table-bordered table-striped">
               <tr>
-                  <th> Ticket ID </th>
-                  <th> Time </th>
-                  <th> Posted Speed </th>
-                  <th> MPH Over </th>
-                  <th> Violator Sex </th>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
               </tr>
               <tr v-for = "ticket in tickets">
-                  <td> {{ticket.tid}} </td>
-                  <td> {{ticket.stop_time}} </td>
-                  <td> {{ticket.posted_speed}} </td>
-                  <td> {{ticket.actual_speed - ticket.posted_speed}} </td> 
-                  <td> {{ticket.violator_sex}} </td>
+                  <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                  <td>{{ticket.violator_sex}}</td>
               </tr>
          </table>
-</div>
-</div>
-
-
+  
+</div>   <!-- end gpaApp -->
+</div>   <!-- end class= 'container' -->
 
 <script>
        let app = Vue.createApp({
@@ -72,5 +71,4 @@
 		  
 
 </script>
-</body>
-</html>
+</body></html>
