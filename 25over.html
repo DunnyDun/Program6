@@ -24,26 +24,26 @@
 
 </nav>    <!-- end nav-bar -->
 
-<div class="container mt-5">
-    <table class="table table-bordered table-striped">
-            <tr>
-                <th>Ticket ID</th>
-				<th>Time</th>
-                <th>Posted Speed</th>
-                <th>MPH Over</th>
-				<th>Violator Sex</th>
-            </tr>
-        
-        
-            <tr v-for="ticket in over25Tickets">
-                <td>{{ticket.tid}}</td>
+<div id="ticketApp">
+
+     <h2>Tickets July 4, 2014, Minneapolis/St. Paul, 25 MPH or more over the limit</h2>
+          
+          <table class="table table-bordered table-striped">
+              <tr>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
+              </tr>
+              <tr v-for = "ticket in tickets">
+                  <td>{{ticket.tid}}</td>
                   <td>{{ticket.stop_time}}</td>
                   <td>{{ticket.posted_speed}}</td>
                   <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
-                  <td>{{ticket.Violator_sex}}</td>
-            </tr>
-        
-    </table>
+                  <td>{{ticket.violator_sex}}</td>
+              </tr>
+         </table>
 </div>
 </div>
 
