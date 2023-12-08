@@ -50,26 +50,25 @@
 
 
 <script>
-    const app = Vue.createApp({
-        data() {
-            return {
-                tickets: [],
-                over25Tickets: []
-            };
+    new Vue({
+        el: '#app',
+        data: {
+            tickets: [], // Your tickets array will be populated here
+            filteredTickets: [] // The array to store filtered tickets
         },
-        async created() {
-            try {
-                const response = await fetch('tickets1.json');
-                this.tickets = await response.json();
-
-                this.over25Tickets = this.tickets.filter(ticket => ticket.actual_speed >= ticket.posted_speed + 25);
-            } catch (error) {
-                console.error("Error loading tickets data:", error);
+        methods: {
+            filterTickets() {
+                // Filter tickets where actual speed is 25 or more over the posted speed
+                this.filteredTickets = this.tickets.filter(ticket => ticket.actual_speed - ticket.posted_speed >= 25);
             }
+        },
+        mounted() {
+            // Fetch your JSON data and populate the 'tickets' array
+            fetch('tickets1.json')
+                .then(response => response.json())
+                .then(data => this.tickets = data);
         }
     });
-
-    app.mount('#ticketApp');
 </script>
 >
 </body>
