@@ -62,16 +62,28 @@
             }
         },
         mounted() {
-            fetch('tickets1.json')
-                .then(response => response.json())
-                .then(data => {
-                    this.tickets = data;
-                    this.filterTickets(); // Optionally, you can filter initially
-                })
-                .catch(error => console.error('Error fetching data:', error));
+            // Simulating a small delay to mimic the asynchronous behavior of fetch
+            setTimeout(() => {
+                // Sample data (replace this with your actual JSON file loading logic)
+                this.tickets = [
+                    {
+                        "actual_speed": 95,
+                        "age": 20,
+                        "posted_speed": 70,
+                        "stop_date": "7/4/2014",
+                        "stop_time": "0:11:00",
+                        "tid": 20124,
+                        "violator_sex": "Female"
+                    },
+                    // Add more data entries here
+                ];
+
+                this.filterTickets(); // Optionally, you can filter initially
+            }, 1000); // Adjust the delay as needed
         }
     });
 </script>
+
 </body>
 </html>
 
