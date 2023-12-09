@@ -69,7 +69,7 @@
             getBytickets() {
                 this.showTable = true;
                 // Filter data for tickets 25mph or more over the speed limit
-                console.log(tickets);
+                console.log(this.tickets);
 		(mphover)= this.tickets.filter((ticket) =>
 		this.actual_speed - this.posted_speed >= 25);
 				
