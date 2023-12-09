@@ -73,7 +73,7 @@
 		this.mphover= this.tickets.filter((ticket) => {  
       let acc = ticket["actual_speed"];
       let posted = ticket["posted_speed"];
-      return (25 >= (acc- posted));
+      return (25 <= (acc- posted));
 })
             }
         },
