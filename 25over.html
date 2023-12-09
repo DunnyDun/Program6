@@ -59,12 +59,14 @@
         },
         created() {
             this.getData();
-	    this.getBytickets()
+	   
         },
         methods: {
             async getData() {
                 const response = await fetch('tickets1.json');
                 this.tickets = await response.json(); // Use the correct variable name 'tickets'
+		
+		   this.mphover = await this.getBytickets()
             },
           async  getBytickets() {
                 this.showTable = true;
